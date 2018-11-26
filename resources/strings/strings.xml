@@ -1,0 +1,5 @@
+<strings>
+	<string id="AppName">Intermittent fasting</string>
+	<string id="startHour">Eating period starting hour</string>
+	<string id="endHour">Eating period ending hour</string>
+</strings>
