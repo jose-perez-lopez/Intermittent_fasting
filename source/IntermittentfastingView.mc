@@ -7,13 +7,12 @@ using Toybox.Application.Properties;
 
 class IntermittentfastingView extends WatchUi.WatchFace {
 	
-	var startHour;
-	var endHour;
-
+	
+	var fastingScheduler;
 
     function initialize() {
         WatchFace.initialize();
-     
+     	fastingScheduler = new FastingScheduler();
     }
 
     // Load your resources here
@@ -29,21 +28,17 @@ class IntermittentfastingView extends WatchUi.WatchFace {
     
     // Update the view
     function onUpdate(dc) {
-        startHour = Application.getApp().getProperty("startHour");
-        endHour = Application.getApp().getProperty("endHour");
-        
-        // Get and show the current time
+        var vTime = View.findDrawableById("TimeLabel");
+        var vDate = View.findDrawableById("DateLabel");
+          // Get and show the current time
         var clockTime = System.getClockTime();   
         var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
         
         var dateInfo = Gregorian.info(Time.now(), Time.FORMAT_LONG);
         var dateString = Lang.format("$1$ $2$", [dateInfo.month, dateInfo.day]);
         
-        var vTime = View.findDrawableById("TimeLabel");
-        var vDate = View.findDrawableById("DateLabel");
-
- 
-        if(clockTime.hour> startHour && clockTime.hour< endHour){
+        
+        if(fastingScheduler.isAllowedToEatNow()){
         	vTime.setColor(Graphics.COLOR_GREEN);
         }else{
             vTime.setColor(Graphics.COLOR_RED);
