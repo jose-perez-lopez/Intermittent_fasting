@@ -1,0 +1,7 @@
+<resources>
+  <fonts>             
+       <font id="analog22" filename="./RobotoCondensed_22.fnt" filter="abcdefghijklmnopqrstuvwzyzADEFHIJLMORSTUVW0123456789.:/ "/>        
+       <font id="avenir66" filename="./avenir66.fnt" filter="0123456789.:/ "/>        
+    </fonts>
+</resources>
+
